@@ -1,4 +1,4 @@
-# ULinux Mint 21 (Based on Ubuntu 22.04) Ansible Test Image
+# Linux Mint 21 (Based on Ubuntu 22.04) Ansible Test Image
 
 [![Build](https://github.com/cstarner/docker-linuxmint21-ansible/actions/workflows/build.yml/badge.svg)](https://github.com/cstarner/docker-linuxmint21-ansible/actions/workflows/build.yml) [![Docker pulls](https://img.shields.io/docker/pulls/cstarner/docker-linuxmint21-ansible)](https://hub.docker.com/r/cstarner/docker-linuxmint21-ansible/)
 
