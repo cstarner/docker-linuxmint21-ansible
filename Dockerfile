@@ -1,9 +1,13 @@
-FROM ubuntu:22.04
-LABEL maintainer="Jeff Geerling"
+FROM linuxmintd/mint21.3-amd64:latest
+LABEL maintainer="Colin Starner"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 ENV pip_packages "ansible"
+
+RUN apt-get update
+
+RUN add-apt-repository ppa:deadsnakes/ppa -y
 
 # Install dependencies.
 RUN apt-get update \
@@ -14,10 +18,9 @@ RUN apt-get update \
        libffi-dev \
        libssl-dev \
        libyaml-dev \
-       python3-dev \
-       python3-setuptools \
-       python3-pip \
-       python3-yaml \
+       python3.13 \
+       python3.13-dev \
+       ca-certificates \
        software-properties-common \
        rsyslog systemd systemd-cron sudo iproute2 \
     && apt-get clean \
@@ -28,8 +31,11 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 # Fix potential UTF-8 errors with ansible-test.
 RUN locale-gen en_US.UTF-8
 
+# Install pip for Python 3.13
+RUN wget -qO- https://bootstrap.pypa.io/get-pip.py | python3.13
+
 # Install Ansible via Pip.
-RUN pip3 install $pip_packages
+RUN python3.13 -m pip install $pip_packages
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl

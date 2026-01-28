@@ -1,8 +1,8 @@
-# Ubuntu 22.04 LTS (Jammy Jellyfish) Ansible Test Image
+# ULinux Mint 21 (Based on Ubuntu 22.04) Ansible Test Image
 
 [![Build](https://github.com/geerlingguy/docker-ubuntu2204-ansible/actions/workflows/build.yml/badge.svg)](https://github.com/geerlingguy/docker-ubuntu2204-ansible/actions/workflows/build.yml) [![Docker pulls](https://img.shields.io/docker/pulls/geerlingguy/docker-ubuntu2204-ansible)](https://hub.docker.com/r/geerlingguy/docker-ubuntu2204-ansible/)
 
-Ubuntu 22.04 LTS (Jammy Jellyfish) Docker container for Ansible playbook and role testing.
+Linux Mint 21 (Based on Ubuntu 22.04 LTS Jammy Jellyfish) Docker container for Ansible playbook and role testing.
 
 ## Tags
 
@@ -16,13 +16,13 @@ This image is built on Docker Hub automatically any time the upstream OS contain
 
   1. [Install Docker](https://docs.docker.com/install/).
   2. `cd` into this directory.
-  3. Run `docker build -t ubuntu2204-ansible .`
+  3. Run `docker build -t linuxmint21-ansible .`
 
 ## How to Use
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
-  2. Pull this image from Docker Hub: `docker pull geerlingguy/docker-ubuntu2204-ansible:latest` (or use the image you built earlier, e.g. `ubuntu2204-ansible:latest`).
-  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host geerlingguy/docker-ubuntu2204-ansible:latest` (to test my Ansible roles, I add in a volume mounted from the current working directory with ``--volume=`pwd`:/etc/ansible/roles/role_under_test:ro``).
+  2. Pull this image from Docker Hub: `docker pull cstarner/docker-linuxmint21-ansible:latest` (or use the image you built earlier, e.g. `linuxmint21-ansible:latest`).
+  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host cstarner/docker-linuxmint21-ansible:latest` (to test my Ansible roles, I add in a volume mounted from the current working directory with ``--volume=`pwd`:/etc/ansible/roles/role_under_test:ro``).
   4. Use Ansible inside the container:
     a. `docker exec --tty [container_id] env TERM=xterm ansible --version`
     b. `docker exec --tty [container_id] env TERM=xterm ansible-playbook /path/to/ansible/playbook.yml --syntax-check`
